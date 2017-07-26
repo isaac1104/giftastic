@@ -3,6 +3,7 @@
 
 <head>
   <meta charset="utf-8">
+  <link rel="stylesheet" href="assets/css/style.css">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
   <title>GIPHY API AJAX</title>
@@ -15,10 +16,18 @@
       <hr>
       <h4>Search the images</h4>
     </div>
+    <h4 class="text-center">Your Keywords</h4>
     <div id="keyWords" class="well well-lg text-center">
-      <h4>Your Keywords</h4>
     </div>
-    <div class="container-fluid text-center"><input id="search" type="text" name="" value=""><button id="button" class="btn btn-info btn-lg" type="button" name="button">Search</button>
+    <div id="images" class="well well-lg text-center row">
+      <div id="firstRow "class="col-md-12"></div>
+      <div id="secondRow "class="col-md-12"></div>
+    </div>
+    <div class="container-fluid text-center">
+      <form>
+      <input id="search" type="text" name="search">
+      <input id="button" type="submit" value="Add Keywords"class="btn btn-info btn-lg"></button>
+    </form>
     </div>
   </div>
   </div>

@@ -1,0 +1,15 @@
+img {
+  width: 300px;
+  height: 300px;
+}
+
+#images {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+}
+
+.rating {
+  position: relative;
+  bottom: 0;
+}
