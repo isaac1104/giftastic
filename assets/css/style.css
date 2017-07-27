@@ -8,8 +8,3 @@ img {
   flex-direction: row;
   flex-wrap: wrap;
 }
-
-.rating {
-  position: relative;
-  bottom: 0;
-}
