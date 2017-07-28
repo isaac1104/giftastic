@@ -1,6 +1,6 @@
 $(document).ready(function() {
   //Array of contents//
-  var contents = ["cat", "puppy", "bear"];
+  contents = ["cat", "puppy", "bear", "bird", "funny cat"];
   //Generate buttons from the contents array, assign class, and custom attribute to each value//
   function generateButton() {
     $("#keyWords").empty();
@@ -21,12 +21,13 @@ $(document).ready(function() {
       url: queryURL,
       method: "GET"
     }).done(function(response) {
+      $("#images").empty();
       for (var i = 0; i < response.data.length; i++) {
         var newDiv = $("<div>");
         $("#images").append(newDiv);
         var showRating = $("<div>");
         showRating.addClass("rating");
-        image = response.data[i].images.downsized.url;
+        image = response.data[i].images.downsized_still.url;
         rating = response.data[i].rating;
         newDiv.append("<img src=" + image + ">");
         newDiv.append(showRating);
@@ -37,15 +38,12 @@ $(document).ready(function() {
 
   $("#addKeywords").on("click", function(event) {
     event.preventDefault();
-    var userSearch = $("#search").val().trim();
-    if (userSearch != "") {
-      contents.push(userSearch);
+    var keywordSearch = $("#search").val().trim().toLowerCase();
+    if (keywordSearch != "" && contents.indexOf(keywordSearch) === -1) {
+      contents.push(keywordSearch);
       generateButton();
       document.getElementById("search").value="";
     }
-  });
-  $(".image").on("click", function() {
-    $("#images").empty();
   });
   $(document).on("click", ".image", getImages);
 });
