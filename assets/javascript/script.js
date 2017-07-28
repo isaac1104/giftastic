@@ -1,6 +1,5 @@
-$(document).ready(function() {
   //Array of contents//
-  contents = ["cat", "puppy", "bear", "bird", "funny cat"];
+  var contents = ["cat", "puppy", "bear", "bird", "funny cat"];
   //Generate buttons from the contents array, assign class, and custom attribute to each value//
   function generateButton() {
     $("#keyWords").empty();
@@ -22,14 +21,18 @@ $(document).ready(function() {
       method: "GET"
     }).done(function(response) {
       $("#images").empty();
+      console.log(response.data[0].images);
       for (var i = 0; i < response.data.length; i++) {
         var newDiv = $("<div>");
         $("#images").append(newDiv);
         var showRating = $("<div>");
         showRating.addClass("rating");
-        image = response.data[i].images.downsized_still.url;
-        rating = response.data[i].rating;
+        var image = response.data[i].images.downsized.url;
+        var rating = response.data[i].rating;
         newDiv.append("<img src=" + image + ">");
+
+        // newDiv.append("<video poster=" + image + " src=" + response.data[i].images.downsized_still.url + "></video>");
+        
         newDiv.append(showRating);
         showRating.text("Rating: " + rating);
       }
@@ -46,4 +49,3 @@ $(document).ready(function() {
     }
   });
   $(document).on("click", ".image", getImages);
-});
