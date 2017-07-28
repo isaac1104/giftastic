@@ -21,22 +21,35 @@
       method: "GET"
     }).done(function(response) {
       $("#images").empty();
-      console.log(response.data[0].images);
       for (var i = 0; i < response.data.length; i++) {
         var newDiv = $("<div>");
         $("#images").append(newDiv);
         var showRating = $("<div>");
+        var image = response.data[i].images.downsized_still.url;
+        var showImage = $("<img src=" + image + ">");
+        showImage.addClass("gifs");
+        showImage.attr("data-still", response.data[i].images.downsized_still.url);
+        showImage.attr("data-animate", response.data[i].images.downsized.url);
+        showImage.attr("data-state", "still");
         showRating.addClass("rating");
-        var image = response.data[i].images.downsized.url;
         var rating = response.data[i].rating;
-        newDiv.append("<img src=" + image + ">");
-
-        // newDiv.append("<video poster=" + image + " src=" + response.data[i].images.downsized_still.url + "></video>");
-        
+        newDiv.append(showImage);
         newDiv.append(showRating);
         showRating.text("Rating: " + rating);
       }
     });
+  }
+  //Animate & stop gif images on click//
+  function animateImages() {
+    console.log("hi");
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+      $(this).attr("data-state", "animate");
+      $(this).attr("src", $(this).attr("data-animate"));
+    } else if (state === "animate") {
+      $(this).attr("data-state", "still");
+      $(this).attr("src", $(this).attr("data-still"));
+    }
   }
 
   $("#addKeywords").on("click", function(event) {
@@ -48,4 +61,9 @@
       document.getElementById("search").value="";
     }
   });
+
   $(document).on("click", ".image", getImages);
+
+  $("#images").on("click", ".gifs", function() {
+    animateImages();
+  });
