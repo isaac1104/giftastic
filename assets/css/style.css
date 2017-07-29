@@ -1,3 +1,12 @@
+* {
+  font-family: 'Indie Flower', cursive;
+  font-size: 16px;
+}
+
+body, div {
+  background-image: url("../image/memphis-colorful.png");
+}
+
 img {
   width: 300px;
   height: 300px;
