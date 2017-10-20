@@ -9,6 +9,8 @@
       btn.attr("data-name", contents[i]);
       btn.text(contents[i]);
       $("#keyWords").append(btn);
+      localStorage.clear();
+      localStorage.setItem("search", btn);
     }
   }
   generateButton();
